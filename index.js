@@ -27,7 +27,7 @@ app.use("/working", async (req, res) => {
 });
 
 //NOTE - get
-app.get("/GET_VEHICLE",async (req,res)=>{
+app.use("/GET_VEHICLE",async (req,res)=>{
   try {
     const VEHICLES = await new Promise((resolve, reject) => {
         db.all("SELECT * FROM Vehicle", [], (err, rows) => {
