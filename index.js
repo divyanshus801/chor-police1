@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const port = 8080;
 const routes = require("./routes/route.js");
+const db = require("./config/db.js");
 //NOTE - export db
 require("./config/db.js");
 
@@ -25,6 +26,20 @@ app.use("/working", async (req, res) => {
   });
 });
 
+//NOTE - get
+app.use("/GET_VEHICLE",async (req,res)=>{
+  try {
+    const VEHICLES = await new Promise((resolve, reject) => {
+        db.all("SELECT * FROM Vehicle", [], (err, rows) => {
+            if (err) reject(err);
+            else resolve(rows);
+        });
+    });
+    return res.status(200).send(VEHICLES);
+} catch (err) {
+    console.error(err.message);
+}
+})
 
 //NOTE - local host
 app.listen(port, () => {
