@@ -8,7 +8,7 @@
     },
     "builds": [
       { "src": "./index.js", "use": "@vercel/node" },
-      { "src": "./routes/route.js", "use": "@vercel/node" }
+      { "src": "../../routes/route.js", "use": "@vercel/node" }
     ],
     "routes": [
       { "src": "/api/(.*)", "dest": "/index.js" },
